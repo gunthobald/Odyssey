@@ -1,5 +1,6 @@
 import pygame
 import commons
+import sys
 pygame.init()
 pygame.mixer.init()
 screen = pygame.display.set_mode([1280, 720])
@@ -24,5 +25,4 @@ class QuitGame(ButtonClass):
         global run
         click = ButtonClass.click(self)
         if click:
-            run = False
-            print run
+            sys.exit(1)
