@@ -1,42 +1,9 @@
 import pygame
 import menu_background
+import buttons
 pygame.init()
 pygame.mixer.init()
 screen = pygame.display.set_mode([1280, 720], pygame.DOUBLEBUF)
-pygame.display.toggle_fullscreen()
-
-
-class ButtonClass:
-    def __init__(self, image_file, pos):
-        self.image = pygame.image.load(image_file)
-        self.pos = pos
-        self.size = [self.image.get_rect()[2], self.image.get_rect()[3]]
-
-    def click(self):
-        collision = aabb(self.pos, self.size)
-        if collision:
-            screen.blit(self.image, self.pos)
-        return collision
-
-
-class QuitGame(ButtonClass):
-    def __init__(self, image_file, pos):
-        ButtonClass.__init__(self, image_file, pos)
-
-    def click(self):
-        collision = ButtonClass.click(self)
-        global run
-        if collision:
-            for event2 in pygame.event.get():
-                if event2.type == pygame.MOUSEBUTTONUP:
-                    sound.play()
-                    pygame.time.delay(1000)
-                    run = False
-
-
-def aabb(pos, size):
-    m_pos = pygame.mouse.get_pos()
-    return pos[0] + size[0] >= m_pos[0] >= pos[0] and pos[1] + size[1] >= m_pos[1] >= pos[1] and m_pos[1]
 
 
 def animate(image):
@@ -48,12 +15,12 @@ pygame.mixer.music.load("./sound/menu_background_music.wav")
 pygame.mixer.music.set_volume(0.30)
 sound = pygame.mixer.Sound("./sound/button_click.wav")
 
-continue_game = ButtonClass("./pictures/buttons/continue_game.png", [28, 50])
-new_game = ButtonClass("./pictures/buttons/new_game.png", [28, 150])
-save_game = ButtonClass("./pictures/buttons/save.png", [28, 250])
-load_game = ButtonClass("./pictures/buttons/load_game.png", [28, 350])
-options = ButtonClass("./pictures/buttons/options.png", [28, 450])
-quit_game = QuitGame("./pictures/buttons/quit_game.png", [28, 550])
+continue_game = buttons.ButtonClass("./pictures/buttons/continue_game.png", [28, 50])
+new_game = buttons.ButtonClass("./pictures/buttons/new_game.png", [28, 150])
+save_game = buttons.ButtonClass("./pictures/buttons/save.png", [28, 250])
+load_game = buttons.ButtonClass("./pictures/buttons/load_game.png", [28, 350])
+options = buttons.ButtonClass("./pictures/buttons/options.png", [28, 450])
+quit_game = buttons.QuitGame("./pictures/buttons/quit_game.png", [28, 550])
 
 ship1_image = pygame.image.load("./pictures/Ship/ship1.png")
 ship2_image = pygame.image.load("./pictures/Ship/ship2.png")
