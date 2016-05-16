@@ -62,7 +62,7 @@ class Waves(MovedObjects):
         elif self.choice == "l":
             if self.pos[0] <= self.wrap_pos:
                 self.pos[0] = self.wrapped_pos
-                print self.pos
+                print(self.pos)
         return self.pos
 
     def draw(self):
